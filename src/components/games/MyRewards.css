@@ -1,0 +1,271 @@
+/* My Rewards CSS (Drawer) */
+.rewards-drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 1100;
+}
+
+.rewards-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(90vw, 420px);
+  height: 100vh;
+  background: #0B0E14;
+  z-index: 1200;
+  box-shadow: -20px 0 60px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+.rewards-header {
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.header-title .icon { color: #E91E63; }
+
+.header-title h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.header-title p {
+  margin: 4px 0 0;
+  font-size: 0.75rem;
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.rewards-drawer .close-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.rewards-drawer .close-btn:hover { background: #f44336; }
+
+/* 📜 Content */
+.rewards-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px;
+}
+
+.rewards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.reward-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+}
+
+.reward-visual {
+  width: 100px;
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  position: relative;
+}
+
+.bottle-stack {
+  display: flex;
+  flex-direction: column;
+  gap: -15px;
+  align-items: center;
+}
+
+.bottle-icon {
+  width: 25px;
+  height: 48px;
+  background: linear-gradient(135deg, #ff9800, #f44336);
+  border-radius: 6px 6px 4px 4px;
+  position: relative;
+  border: 2px solid rgba(255,255,255,0.4);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.bottle-icon::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: #333;
+  border-radius: 2px;
+}
+
+.reward-pill {
+  font-size: 0.6rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 50px;
+  white-space: nowrap;
+  opacity: 0.6;
+  font-weight: 700;
+}
+
+.reward-details {
+  flex: 1;
+  padding: 20px;
+}
+
+.reward-meta {
+  font-size: 0.7rem;
+  opacity: 0.4;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.reward-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ff9800;
+  margin-bottom: 15px;
+}
+
+.promo-row {
+  display: flex;
+  gap: 8px;
+}
+
+.promo-code {
+  background: rgba(255, 255, 255, 0.05);
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.copy-btn {
+  background: #E91E63;
+  border: none;
+  color: white;
+  width: 38px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-btn.copied { background: #4CAF50; }
+.copy-btn:hover { transform: scale(1.05); }
+
+/* 🍹 Empty State */
+.empty-rewards {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.empty-icon { font-size: 4rem; opacity: 0.2; margin-bottom: 20px; }
+
+.empty-rewards h4 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.empty-rewards p {
+  font-size: 0.92rem;
+  opacity: 0.5;
+  margin-bottom: 30px;
+}
+
+.play-hint-btn {
+  padding: 12px 25px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* 🔚 Footer */
+.rewards-footer {
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.shop-now-btn {
+  width: 100%;
+  padding: 18px;
+  border-radius: 18px;
+  background: white;
+  color: black;
+  border: none;
+  font-weight: 900;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 15px;
+  transition: all 0.2s;
+}
+
+.shop-now-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255,255,255,0.2);
+}
+
+.footer-hint {
+  font-size: 0.68rem;
+  text-align: center;
+  opacity: 0.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+@media (max-width: 450px) {
+  .rewards-drawer { width: 100vw; }
+  .rewards-header { padding: 20px; }
+  .rewards-content { padding: 20px; }
+}

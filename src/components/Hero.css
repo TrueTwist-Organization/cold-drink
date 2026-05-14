@@ -1,0 +1,365 @@
+.hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding-top: 95px;
+  padding-bottom: 48px;
+  background: #09070f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 45%, rgba(72, 18, 98, 0.42) 0%, transparent 70%),
+    linear-gradient(160deg, #0c0914 0%, #130d1c 45%, #08060d 100%);
+}
+
+.hero-gallery-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.96;
+  filter: saturate(1.02) brightness(0.82);
+  pointer-events: none;
+}
+
+.hero-color-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-fruit-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.hero-fruit {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.84;
+  filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.28));
+  transform: rotate(var(--fruit-rot, 0deg));
+  animation: heroFruitFloat 5.8s ease-in-out infinite;
+}
+
+.hero-fruit::before,
+.hero-fruit::after {
+  content: "";
+  position: absolute;
+}
+
+.hero-fruit-orange {
+  background:
+    repeating-conic-gradient(
+      rgba(255, 244, 205, 0.7) 0deg 24deg,
+      rgba(255, 187, 52, 0.16) 24deg 45deg
+    ),
+    radial-gradient(circle, rgba(255, 208, 105, 0.92) 20%, rgba(249, 115, 22, 0.92) 58%, rgba(128, 45, 10, 0.65) 100%);
+  box-shadow: inset 0 0 0 5px rgba(255, 238, 184, 0.34);
+}
+
+.hero-fruit-mango {
+  border-radius: 56% 44% 58% 42% / 44% 58% 42% 56%;
+  background: linear-gradient(135deg, rgba(255, 220, 100, 0.96), rgba(249, 115, 22, 0.92));
+}
+
+.hero-fruit-lime {
+  background:
+    repeating-conic-gradient(
+      rgba(235, 255, 222, 0.72) 0deg 24deg,
+      rgba(120, 200, 90, 0.18) 24deg 45deg
+    ),
+    radial-gradient(circle, rgba(180, 255, 155, 0.94) 20%, rgba(34, 197, 94, 0.9) 56%, rgba(20, 83, 45, 0.62) 100%);
+  box-shadow: inset 0 0 0 5px rgba(234, 255, 218, 0.28);
+}
+
+.hero-fruit-berry {
+  background: radial-gradient(circle at 36% 34%, rgba(255, 195, 220, 0.92), rgba(236, 72, 153, 0.96) 58%, rgba(114, 28, 72, 0.74) 100%);
+}
+
+.hero-fruit-plum {
+  background: radial-gradient(circle at 36% 34%, rgba(227, 192, 255, 0.88), rgba(139, 92, 246, 0.95) 58%, rgba(66, 28, 118, 0.72) 100%);
+}
+
+.hero-fruit-leaf {
+  border-radius: 0% 100% 0% 100% / 50% 50% 50% 50%;
+  background: linear-gradient(135deg, rgba(173, 255, 128, 0.95), rgba(34, 197, 94, 0.88) 58%, rgba(20, 83, 45, 0.7) 100%);
+}
+
+.hero-fruit-leaf::after {
+  left: 46%;
+  top: 14%;
+  bottom: 12%;
+  width: 2px;
+  background: rgba(236, 255, 221, 0.55);
+  transform: rotate(-18deg);
+}
+
+.hero-waterfall {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-water-pour {
+  position: absolute;
+  top: -8%;
+  width: clamp(36px, 4vw, 54px);
+  height: 68%;
+  border-radius: 999px;
+  opacity: 0.8;
+  mix-blend-mode: screen;
+  transform: translateX(-50%) scaleY(0.94);
+  animation: heroPourFlow 3.8s ease-in-out infinite;
+}
+
+.hero-water-pour::before,
+.hero-water-pour::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.hero-water-pour::before {
+  inset: 0 25%;
+  background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.16) 30%, rgba(255,255,255,0.04) 100%);
+}
+
+.hero-water-pour::after {
+  inset: auto 22% -8% 22%;
+  height: 22%;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.34), rgba(255,255,255,0));
+  filter: blur(12px);
+}
+
+.hero-water-splash {
+  position: absolute;
+  top: 59%;
+  width: clamp(92px, 12vw, 140px);
+  height: clamp(26px, 3vw, 38px);
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.22);
+  border-top-color: rgba(255,255,255,0.42);
+  background: radial-gradient(circle at center, rgba(255,255,255,0.10), transparent 72%);
+  animation: heroSplashPulse 2.4s ease-in-out infinite;
+}
+
+.hero-water-drop {
+  position: absolute;
+  top: -10%;
+  border-radius: 70% 70% 82% 82%;
+  opacity: 0;
+  transform: translateY(-10%) scale(0.75);
+  animation: heroWaterDrop linear infinite;
+}
+
+.hero-soft-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, transparent 18%, rgba(8, 6, 14, 0.36) 100%),
+    linear-gradient(to top, rgba(5, 3, 10, 0.58) 0%, transparent 24%),
+    linear-gradient(to bottom, rgba(5, 3, 10, 0.46) 0%, transparent 18%),
+    linear-gradient(to right, rgba(6, 4, 10, 0.26) 0%, transparent 24%, transparent 76%, rgba(6, 4, 10, 0.26) 100%);
+}
+
+.hero-gallery-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-gallery-particle {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  filter: blur(1px);
+  box-shadow: 0 0 20px rgba(var(--page-acc-rgb, 199,95,113), 0.28);
+  animation: galleryFloat linear infinite;
+}
+
+@keyframes galleryFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.75);
+  }
+  15% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px) scale(1.2);
+  }
+}
+
+.hero-gallery-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-gallery-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.24);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.28s ease;
+}
+
+.hero-gallery-dot.active {
+  width: 28px;
+  background: var(--page-acc, #c75f71);
+}
+
+.hero-gallery-dot:hover {
+  background: rgba(255, 255, 255, 0.54);
+}
+
+@keyframes heroFruitFloat {
+  0% {
+    transform: translateY(0) rotate(var(--fruit-rot, 0deg)) scale(1);
+  }
+  50% {
+    transform: translateY(-16px) rotate(calc(var(--fruit-rot, 0deg) + 6deg)) scale(1.05);
+  }
+  100% {
+    transform: translateY(0) rotate(var(--fruit-rot, 0deg)) scale(1);
+  }
+}
+
+@keyframes heroPourFlow {
+  0% {
+    opacity: 0.35;
+    transform: translateX(-50%) scaleY(0.88);
+  }
+  50% {
+    opacity: 0.88;
+    transform: translateX(-50%) scaleY(1.04);
+  }
+  100% {
+    opacity: 0.42;
+    transform: translateX(-50%) scaleY(0.92);
+  }
+}
+
+@keyframes heroSplashPulse {
+  0% {
+    opacity: 0.24;
+    transform: translateX(-50%) scale(0.88);
+  }
+  55% {
+    opacity: 0.6;
+    transform: translateX(-50%) scale(1.06);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(1.16);
+  }
+}
+
+@keyframes heroWaterDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-16%) scale(0.7);
+  }
+  20% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(112vh) scale(1.08);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 84px;
+    padding-bottom: 38px;
+  }
+
+  .hero-fruit {
+    opacity: 0.74;
+  }
+
+  .hero-water-pour {
+    width: clamp(30px, 4vw, 42px);
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    min-height: 86vh;
+    padding-top: 78px;
+    padding-bottom: 34px;
+  }
+
+  .hero-gallery-dots {
+    gap: 8px;
+    bottom: 12px;
+  }
+
+  .hero-fruit-layer .hero-fruit:nth-child(4) {
+    display: none;
+  }
+
+  .hero-fruit {
+    opacity: 0.64;
+  }
+
+  .hero-water-pour {
+    top: -4%;
+    width: 28px;
+    height: 60%;
+  }
+
+  .hero-water-splash {
+    top: 62%;
+    width: 88px;
+  }
+
+  .hero-water-drop {
+    opacity: 0.58;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fruit,
+  .hero-water-pour,
+  .hero-water-splash,
+  .hero-water-drop,
+  .hero-gallery-particle {
+    animation: none;
+  }
+}

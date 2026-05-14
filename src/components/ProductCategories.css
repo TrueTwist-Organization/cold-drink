@@ -1,0 +1,275 @@
+/* ══════════════════════════════════════════════════════
+   PRODUCT CATEGORIES  –  Full-cover image cards
+   Fruit juice theme · vibrant colors · dark overlays
+   ══════════════════════════════════════════════════════ */
+
+.pcat-section {
+  position: relative;
+  padding: 7rem 0 6rem;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* ── Ambient blobs ───────────────────────────────────── */
+.pcat-blob { position:absolute; border-radius:50%; filter:blur(100px); pointer-events:none; z-index:0; }
+.pcat-blob-a {
+  width:500px; height:500px; top:-120px; left:-100px;
+  background:radial-gradient(circle,rgba(199,95,113,0.22),transparent 65%);
+  animation:blobA 18s ease-in-out infinite alternate;
+}
+.pcat-blob-b {
+  width:400px; height:400px; bottom:-80px; right:-80px;
+  background:radial-gradient(circle,rgba(162,174,157,0.18),transparent 65%);
+  animation:blobB 22s ease-in-out infinite alternate-reverse;
+}
+@keyframes blobA { 0%{transform:translate(0,0)} 100%{transform:translate(25px,-25px) scale(1.05)} }
+@keyframes blobB { 0%{transform:translate(0,0)} 100%{transform:translate(-20px,20px) scale(0.96)} }
+
+/* ── Section heading ─────────────────────────────────── */
+.pcat-heading {
+  display:flex; flex-direction:column; align-items:center; gap:0.05em;
+  font-size:unset; background:none; -webkit-text-fill-color:unset; animation:none; filter:none;
+}
+.pcat-h1 {
+  display:block;
+  font-family:'Poppins',sans-serif; font-weight:900; text-transform:uppercase;
+  font-size:clamp(2.8rem,7vw,5.5rem); line-height:1.05; letter-spacing:-0.02em;
+  color:rgba(240,232,224,0.92);
+  text-shadow:0 0 40px rgba(199,95,113,0.30), 2px 3px 14px rgba(0,0,0,0.5);
+}
+.pcat-h2 {
+  display:block;
+  font-family:'Poppins',sans-serif; font-weight:900; text-transform:uppercase;
+  font-size:clamp(2.8rem,7vw,5.5rem); line-height:1.05; letter-spacing:-0.02em;
+  background:linear-gradient(90deg, var(--bronze,#CE8946) 0%, var(--gold,#D4AF37) 55%, var(--rose,#C75F71) 100%);
+  background-size:250% auto;
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  animation:pcatH2Grad 5s linear infinite;
+}
+@keyframes pcatH2Grad { 0%{background-position:0% center} 100%{background-position:250% center} }
+.pcat-sub { font-size:0.95rem; color:rgba(240,232,224,0.42); margin-top:0.2rem; }
+
+/* ── Grid — 4 columns ────────────────────────────────── */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4rem;
+  position: relative; z-index: 1;
+  margin-top: 1rem;
+}
+
+/* ══ CARD ══════════════════════════════════════════════ */
+
+.cat-card {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 3 / 4;             /* tall portrait card */
+  will-change: transform;
+  transition: box-shadow 0.4s ease;
+  box-shadow:
+    0 8px 30px rgba(0,0,0,0.22),
+    0 2px 8px rgba(0,0,0,0.12);
+}
+
+.cat-card:hover {
+  box-shadow:
+    0 24px 65px rgba(0,0,0,0.38),
+    0 0 55px rgba(var(--acc-rgb,206,137,70), 0.28);
+}
+
+/* ── Full-cover image ────────────────────────────────── */
+.cat-img-cover {
+  position: absolute; inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.cat-cover-img, .cat-vid-wrap, .cat-cover-vid {
+  width: 100%; height: 100%;
+  object-fit: cover;             /* fills the entire card */
+  object-position: center top;
+  will-change: transform;
+  user-select: none; pointer-events: none;
+}
+
+.cat-cover-img {
+  transition: transform 0.6s ease;
+}
+
+.cat-vid-wrap {
+  position: absolute; inset: 0;
+  background: #000;
+}
+
+/* Multi-layer dark gradient overlay */
+.cat-overlay {
+  position: absolute; inset: 0;
+  background:
+    /* Strong dark bottom for text readability */
+    linear-gradient(to top, rgba(5,3,2,0.82) 0%, rgba(5,3,2,0.45) 40%, rgba(5,3,2,0.12) 65%, transparent 100%),
+    /* Subtle top dark edge */
+    linear-gradient(to bottom, rgba(5,3,2,0.18) 0%, transparent 30%);
+  z-index: 1;
+}
+
+/* Color tint overlay (per-category) */
+.cat-overlay-color {
+  position: absolute; inset: 0;
+  opacity: 0.18;
+  z-index: 2;
+  transition: opacity 0.4s ease;
+}
+.cat-card:hover .cat-overlay-color { opacity: 0.28; }
+
+/* ── Animated border ring ────────────────────────────── */
+.cat-border-ring {
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(transparent,transparent) padding-box,
+    linear-gradient(135deg,
+      rgba(var(--acc-rgb,206,137,70),0.8) 0%,
+      rgba(var(--acc-rgb,206,137,70),0.15) 50%,
+      rgba(var(--acc-rgb,206,137,70),0.7) 100%
+    ) border-box;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 8;
+  pointer-events: none;
+}
+.cat-card:hover .cat-border-ring { opacity: 1; }
+
+/* ── Glow spot ───────────────────────────────────────── */
+.cat-glow-spot {
+  position: absolute;
+  width: 150%; height: 80%;
+  bottom: -40%; left: -25%;
+  background: radial-gradient(ellipse,
+    rgba(var(--acc-rgb,206,137,70),0.35) 0%,
+    transparent 65%
+  );
+  filter: blur(22px);
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.cat-card:hover .cat-glow-spot { opacity: 1; }
+
+/* ── Emoji badge ─────────────────────────────────────── */
+.cat-emoji-badge {
+  position: absolute;
+  top: 1.1rem; left: 1.1rem;
+  font-size: 1.8rem;
+  z-index: 6;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+  animation: emojiBob 3s ease-in-out infinite alternate;
+}
+@keyframes emojiBob {
+  0%  { transform:translateY(0) scale(1); }
+  100%{ transform:translateY(-6px) scale(1.12); }
+}
+
+/* ── Bottom text block ───────────────────────────────── */
+.cat-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1.4rem 1.3rem 1.3rem;
+  z-index: 7;
+  display: flex; flex-direction: column; gap: 0.22rem;
+}
+
+.cat-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #FFFBEE;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  letter-spacing: 0.01em;
+  /* reset global h3 styles */
+  background: none; -webkit-text-fill-color: #FFFBEE; animation: none;
+}
+
+.cat-desc {
+  font-size: 0.72rem;
+  color: rgba(255,248,220,0.72);
+  line-height: 1.45;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cat-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+  padding: 0.38rem 1rem;
+  background: rgba(var(--acc-rgb,206,137,70),0.22);
+  border: 1px solid rgba(var(--acc-rgb,206,137,70),0.55);
+  border-radius: 50px;
+  color: #FFFBEE;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  width: fit-content;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.cat-card:hover .cat-cta {
+  background: rgba(var(--acc-rgb,206,137,70),0.42);
+  border-color: rgba(var(--acc-rgb,206,137,70),0.85);
+  box-shadow: 0 4px 16px rgba(var(--acc-rgb,206,137,70),0.4);
+  transform: translateY(-2px);
+}
+
+/* ── Gloss sweep ─────────────────────────────────────── */
+.cat-gloss-sweep {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    115deg, transparent 25%,
+    rgba(255,255,255,0.18) 45%, rgba(255,255,255,0.28) 50%,
+    rgba(255,255,255,0.12) 55%, transparent 75%
+  );
+  animation: glossRun 0.65s ease-out;
+  pointer-events: none; z-index: 9; border-radius: inherit;
+}
+@keyframes glossRun { from{transform:translateX(-110%)} to{transform:translateX(110%)} }
+
+/* ══ RESPONSIVE ════════════════════════════════════════ */
+@media(max-width:1100px) {
+  .cat-grid { grid-template-columns:repeat(3,1fr); }
+}
+@media(max-width:760px) {
+  .cat-grid { grid-template-columns:repeat(2,1fr); gap:1rem; }
+  .pcat-section { padding:5rem 0 4rem; }
+  .cat-info { padding: 1.15rem 1rem 1rem; }
+  .cat-desc { font-size: 0.68rem; }
+}
+@media(max-width:560px) {
+  .cat-grid { grid-template-columns:1fr; gap:0.9rem; }
+  .cat-card  { aspect-ratio:16/13; }
+  .cat-name  { font-size:0.98rem; }
+  .cat-desc { font-size: 0.72rem; -webkit-line-clamp: 3; line-clamp: 3; }
+  .cat-emoji-badge { font-size:1.45rem; top: 0.85rem; left: 0.85rem; }
+  .cat-cta { font-size: 0.68rem; padding: 0.34rem 0.85rem; }
+}
+
+/* ── Viewer Overlay ──────────────────────────────────── */
+.pcat-viewer-overlay {
+  animation: overlayFadeIn 0.5s ease-out;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

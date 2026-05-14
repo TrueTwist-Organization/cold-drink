@@ -1,0 +1,110 @@
+.testimonials-section {
+  padding: 100px 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(var(--tertiary-rgb), 0.06) 0%, transparent 60%);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  margin-top: 4rem;
+}
+
+.testimonial-card {
+  position: relative;
+  border-radius: 28px;
+  padding: 3rem 2.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.4s ease;
+  cursor: default;
+}
+
+.testimonial-card:hover {
+  border-color: var(--t-color);
+  box-shadow: 0 0 30px var(--t-color) 20, 0 24px 48px rgba(0,0,0,0.5);
+}
+
+.quote-mark {
+  font-size: 5rem;
+  font-family: serif;
+  line-height: 1;
+  color: var(--t-color);
+  opacity: 0.3;
+  margin-bottom: -1.5rem;
+  display: block;
+}
+
+.review-text {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.stars {
+  color: #FFD700;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+.reviewer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  border: 2px solid var(--t-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.reviewer-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.reviewer-role {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  opacity: 0.7;
+  border-radius: 0 0 28px 28px;
+  filter: blur(1px);
+}
+
+@media (max-width: 768px) {
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .testimonials-section {
+    padding: 60px 0;
+  }
+  .testimonial-card {
+    padding: 2.5rem 1.5rem;
+  }
+  .quote-mark {
+    font-size: 4rem;
+  }
+}

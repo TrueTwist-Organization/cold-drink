@@ -1,0 +1,78 @@
+.static-page-container {
+  padding-top: 120px;
+  padding-bottom: 80px;
+  min-height: calc(100vh - 300px);
+  position: relative;
+  z-index: 2;
+  color: #fff;
+}
+
+.static-hero {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+}
+
+.static-hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+.static-content {
+  background: rgba(20, 20, 20, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 40px 60px;
+  backdrop-filter: blur(10px);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.static-content h2 {
+  font-size: 1.8rem;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #00f2fe;
+}
+
+.static-content h2:first-child {
+  margin-top: 0;
+}
+
+.static-content h3 {
+  font-size: 1.4rem;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.static-content p, .static-content ul, .static-content li {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin-bottom: 15px;
+}
+
+.static-content ul {
+  padding-left: 20px;
+}
+
+.static-content li {
+  margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+  .static-hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .static-content {
+    padding: 30px 20px;
+    margin: 0 15px;
+  }
+}

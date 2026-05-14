@@ -1,0 +1,115 @@
+.features {
+  padding: 8rem 0;
+  background-color: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+.text-center {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.flavors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.glass-panel {
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 24px;
+}
+
+.flavor-card {
+  padding: 2.5rem;
+  text-align: center;
+  position: relative;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.flavor-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(var(--primary-rgb), 0.1);
+  border-color: var(--card-color);
+}
+
+.card-glow {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: var(--card-color);
+  filter: blur(80px);
+  opacity: 0.3;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.flavor-card:hover .card-glow {
+  opacity: 0.6;
+}
+
+.card-image {
+  height: 250px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-can {
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.6));
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.5s;
+}
+
+.flavor-card:hover .product-can {
+  transform: scale(1.15) rotate(8deg);
+  filter: drop-shadow(0 25px 30px rgba(0,0,0,0.8)) drop-shadow(0 0 20px var(--card-color));
+}
+
+.card-content {
+  position: relative;
+  z-index: 1;
+}
+
+.card-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.card-content p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: var(--text-muted);
+}
+
+.card-btn {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-color: var(--card-color);
+}
+
+.card-btn:hover {
+  background-color: var(--glass-bg);
+  box-shadow: 0 5px 25px var(--card-color);
+}

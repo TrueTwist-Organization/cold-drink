@@ -1,0 +1,477 @@
+/* ══════════════════════════════════════════════════════
+   SCROLL STORY — Premium 5-Stage Scroll-Driven Section
+   ══════════════════════════════════════════════════════ */
+
+/* ── Section wrapper (GSAP pins this to viewport) ───── */
+.scroll-story {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #070710;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ══ BACKGROUND LAYERS ══════════════════════════════════ */
+.ss-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.ss-bg-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: opacity;
+}
+.ss-bg-1 { opacity: 1; filter: brightness(0.22) saturate(0.5); }
+.ss-bg-2 { opacity: 0; filter: brightness(0.28) saturate(0.7); }
+.ss-bg-3 { opacity: 0; filter: brightness(0.35) saturate(0.9); }
+
+/* Permanent dark gradient on top of bg images */
+.ss-bg-dark {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%, transparent 20%, rgba(5,4,12,0.75) 85%),
+    linear-gradient(to bottom, rgba(5,4,12,0.55) 0%, transparent 35%),
+    linear-gradient(to top,    rgba(5,4,12,0.65) 0%, transparent 40%);
+}
+
+/* ── Theme colour wash (opacity driven by GSAP) ─────── */
+.ss-color-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 65% 55% at 55% 50%,
+    rgba(var(--ss-acc), 0.35) 0%,
+    rgba(var(--ss-acc), 0.12) 45%,
+    transparent 72%
+  );
+}
+
+/* ══ DEPTH RINGS (appear stage 2) ═══════════════════════ */
+.ss-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  will-change: transform, opacity;
+}
+.ss-ring-1 {
+  width: 420px; height: 420px;
+  border: 1.5px solid rgba(var(--ss-acc), 0.50);
+  box-shadow: 0 0 30px rgba(var(--ss-acc), 0.20), inset 0 0 30px rgba(var(--ss-acc), 0.08);
+  animation: ssRingSpin 14s linear infinite;
+}
+.ss-ring-2 {
+  width: 580px; height: 580px;
+  border: 1px dashed rgba(var(--ss-acc), 0.28);
+  animation: ssRingSpin 22s linear infinite reverse;
+}
+@keyframes ssRingSpin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ══ GLOW HALO (stage 4 peak) ════════════════════════════ */
+.ss-glow-halo {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  width: 680px; height: 680px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--ss-acc), 0.50) 0%,
+    rgba(var(--ss-acc), 0.20) 38%,
+    rgba(var(--ss-acc), 0.05) 60%,
+    transparent 72%
+  );
+  filter: blur(55px);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* ══ MAIN STAGE ══════════════════════════════════════════ */
+.ss-stage {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* ══ FRUIT CSS SHAPES (same as hero) ════════════════════ */
+.ss-fruit {
+  position: absolute;
+  top: 50%; left: 50%;
+  opacity: 0;
+  scale: 0.4;
+  pointer-events: none;
+  will-change: opacity, scale, transform;
+  /* Orbit animation always running — GSAP controls visibility */
+  animation: ssOrbit var(--dur, 10s) linear infinite var(--delay, 0s);
+}
+
+@keyframes ssOrbit {
+  0%   { transform: translate(-50%, -50%)
+           rotate(calc(var(--angle, 0deg)))
+           translateX(var(--orbit, 200px))
+           rotate(calc(-1 * var(--angle, 0deg))); }
+  100% { transform: translate(-50%, -50%)
+           rotate(calc(var(--angle, 0deg) + 360deg))
+           translateX(var(--orbit, 200px))
+           rotate(calc(-1 * (var(--angle, 0deg) + 360deg))); }
+}
+
+/* Fruit appearance types (reuse hero shapes) */
+.ss-fruit.hf-orange {
+  border-radius: 50%;
+  background:
+    repeating-conic-gradient(rgba(80,30,0,0.5) 0deg 30deg, transparent 30deg 60deg),
+    radial-gradient(circle, rgba(255,185,60,0.95) 20%, rgba(180,90,10,0.7) 55%, rgba(50,15,0,0.5) 90%);
+  box-shadow: 0 0 20px rgba(255,150,0,0.55), 0 0 50px rgba(255,100,0,0.2);
+}
+.ss-fruit.hf-lemon {
+  border-radius: 50% 50% 50% 10%;
+  background: radial-gradient(circle at 35% 35%, rgba(255,255,160,0.95), rgba(200,160,20,0.75) 55%, rgba(70,45,0,0.5) 90%);
+  box-shadow: 0 0 18px rgba(240,220,60,0.50);
+}
+.ss-fruit.hf-berry {
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255,180,190,0.95), rgba(199,95,113,0.78) 55%, rgba(75,8,28,0.5) 90%);
+  box-shadow: 0 0 22px rgba(199,95,113,0.65);
+}
+.ss-fruit.hf-leaf {
+  border-radius: 0% 100% 0% 100% / 50% 50% 50% 50%;
+  background: linear-gradient(135deg, rgba(180,225,125,0.9), rgba(120,165,110,0.7) 50%, rgba(45,75,40,0.5) 100%);
+  box-shadow: 0 0 16px rgba(120,200,80,0.50);
+}
+.ss-fruit.hf-grape {
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(230,185,225,0.9), rgba(160,92,165,0.62) 55%, rgba(48,8,58,0.45) 90%);
+  box-shadow: 0 0 18px rgba(180,100,190,0.50);
+}
+
+/* ══ BUBBLE PARTICLES ════════════════════════════════════ */
+.ss-bubble {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(calc(-50% + var(--bx)), calc(-50% + var(--by)));
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%,
+    rgba(255,255,255,0.85) 0%,
+    rgba(200,220,255,0.45) 50%,
+    rgba(180,200,255,0.10) 100%
+  );
+  border: 1px solid rgba(255,255,255,0.25);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: ssBubbleFloat 3s ease-in-out infinite alternate;
+}
+@keyframes ssBubbleFloat {
+  0%   { transform: translate(calc(-50% + var(--bx)), calc(-50% + var(--by)));           }
+  100% { transform: translate(calc(-50% + var(--bx)), calc(-50% + var(--by) - 18px));    }
+}
+
+/* ══ LIQUID EFFECTS ══════════════════════════════════════ */
+.ss-liquid-wrap {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px; height: 500px;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Main liquid blob — the burst from the bottle */
+.ss-liquid-blob {
+  position: absolute;
+  top: 10%; left: 50%;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top center;
+  width: 220px; height: 320px;
+  opacity: 0;
+  border-radius: 42% 58% 38% 62% / 52% 44% 56% 48%;
+  background: radial-gradient(
+    ellipse at 45% 30%,
+    rgba(255, 220, 80, 0.90)  0%,
+    rgba(255, 160, 20, 0.78) 32%,
+    rgba(220, 100, 10, 0.55) 60%,
+    rgba(150,  50,  0, 0.25) 85%,
+    transparent 100%
+  );
+  filter: blur(2px);
+  animation: ssLiquidMorph 4s ease-in-out infinite alternate;
+  will-change: border-radius, opacity;
+}
+@keyframes ssLiquidMorph {
+  0%   { border-radius: 42% 58% 38% 62% / 52% 44% 56% 48%; }
+  33%  { border-radius: 60% 40% 55% 45% / 48% 52% 44% 56%; }
+  66%  { border-radius: 38% 62% 48% 52% / 56% 38% 62% 42%; }
+  100% { border-radius: 52% 48% 60% 40% / 42% 58% 38% 62%; }
+}
+
+/* Liquid stream — the thin pour arc from bottle mouth */
+.ss-liquid-stream {
+  position: absolute;
+  top: 20%; left: 54%;
+  transform-origin: top center;
+  transform: scaleY(0);
+  opacity: 0;
+  width: 28px; height: 260px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 200, 50, 0.95)  0%,
+    rgba(255, 150, 20, 0.80) 40%,
+    rgba(200, 100, 10, 0.50) 75%,
+    transparent 100%
+  );
+  border-radius: 50% 50% 45% 45%;
+  filter: blur(1.5px);
+  will-change: transform, opacity;
+}
+
+/* Splash rings radiating outward */
+.ss-splash-ring-1,
+.ss-splash-ring-2 {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+.ss-splash-ring-1 {
+  width: 380px; height: 200px;
+  border: 2.5px solid rgba(255, 190, 40, 0.70);
+  box-shadow: 0 0 20px rgba(255, 160, 20, 0.40);
+  filter: blur(1px);
+}
+.ss-splash-ring-2 {
+  width: 480px; height: 260px;
+  border: 1.5px solid rgba(255, 160, 20, 0.40);
+  filter: blur(2px);
+}
+
+/* Individual splash droplets */
+.ss-droplet {
+  position: absolute;
+  top: 50%; left: 50%;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: radial-gradient(circle at 40% 35%,
+    rgba(255,220,60,0.90) 0%,
+    rgba(255,160,20,0.70) 50%,
+    rgba(200,90,10,0.30) 100%
+  );
+  opacity: 0;
+  scale: 0.3;
+  filter: blur(0.5px);
+  pointer-events: none;
+  will-change: opacity, scale, transform;
+}
+
+/* ══ BOTTLE ══════════════════════════════════════════════ */
+.ss-bottle-wrap {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  will-change: transform;
+}
+
+.ss-bottle-3d {
+  transform-style: preserve-3d;
+  perspective: 1200px;
+  will-change: transform;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ssBottleIdle 6s ease-in-out infinite;
+}
+@keyframes ssBottleIdle {
+  0%, 100% { transform: translateY(0px)  rotateZ(0deg); }
+  50%       { transform: translateY(-14px) rotateZ(0.8deg); }
+}
+
+.ss-bottle-img {
+  height: 380px;
+  width: auto;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+  filter:
+    drop-shadow(0 0 30px rgba(255,150,30,0.55))
+    drop-shadow(0 0 80px rgba(255,120,20,0.25))
+    drop-shadow(0 40px 60px rgba(0,0,0,0.70));
+  will-change: filter;
+  animation: ssBottleGlow 4s ease-in-out infinite alternate;
+}
+@keyframes ssBottleGlow {
+  0%   {
+    filter: drop-shadow(0 0 30px rgba(255,150,30,0.55))
+            drop-shadow(0 0 80px rgba(255,120,20,0.22))
+            drop-shadow(0 40px 60px rgba(0,0,0,0.70));
+  }
+  100% {
+    filter: drop-shadow(0 0 50px rgba(255,180,40,0.80))
+            drop-shadow(0 0 120px rgba(255,140,30,0.40))
+            drop-shadow(0 40px 60px rgba(0,0,0,0.75));
+  }
+}
+
+/* Glassy reflection on bottle surface */
+.ss-bottle-reflection {
+  position: absolute;
+  top: 5%; left: 12%;
+  width: 25%; height: 60%;
+  background: linear-gradient(
+    170deg,
+    rgba(255,255,255,0.22) 0%,
+    rgba(255,255,255,0.08) 50%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  filter: blur(2.5px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Soft floor shadow under bottle */
+.ss-bottle-shadow {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px; height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.65) 0%, transparent 70%);
+  filter: blur(8px);
+}
+
+/* ══ STAGE CAPTIONS ══════════════════════════════════════ */
+.ss-captions {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 12;
+  text-align: center;
+  width: 560px;
+  pointer-events: none;
+}
+.ss-caption {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  opacity: 0;
+  transform: translateY(18px);
+  will-change: opacity, transform;
+}
+.ss-caption:first-child { opacity: 1; transform: translateY(0); }
+
+.ss-cap-num {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(var(--ss-acc), 0.75);
+  margin-bottom: 0.5rem;
+}
+.ss-cap-title {
+  font-family: 'Montserrat', 'Poppins', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 0.55rem;
+  text-shadow:
+    0 2px 40px rgba(var(--ss-acc), 0.45),
+    0 0 80px rgba(var(--ss-acc), 0.18);
+}
+.ss-cap-sub {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(240, 230, 220, 0.62);
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+/* ══ PROGRESS BAR ════════════════════════════════════════ */
+.ss-prog-track {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  z-index: 15;
+  overflow: hidden;
+}
+.ss-prog-fill {
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(
+    to right,
+    rgba(var(--ss-acc), 0.90),
+    rgba(var(--ss-acc), 0.45)
+  );
+  box-shadow: 0 0 12px rgba(var(--ss-acc), 0.60);
+}
+
+/* ══ SCROLL HINT ═════════════════════════════════════════ */
+.ss-scroll-hint {
+  position: absolute;
+  bottom: 5.5%; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.45rem; z-index: 12;
+  animation: ssHintFade 1.5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes ssHintFade {
+  0%   { opacity: 0.65; }
+  100% { opacity: 0.20; }
+}
+.ss-scroll-hint span {
+  font-size: 0.62rem; letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(220,210,200,0.55);
+}
+.ss-sh-arrow {
+  width: 16px; height: 16px;
+  border-right: 2px solid rgba(220,210,200,0.45);
+  border-bottom: 2px solid rgba(220,210,200,0.45);
+  transform: rotate(45deg);
+  margin-top: -4px;
+}
+
+/* ══ RESPONSIVE ══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .ss-bottle-img  { height: 290px; }
+  .ss-ring-1      { width: 300px;  height: 300px; }
+  .ss-ring-2      { width: 420px;  height: 420px; }
+  .ss-captions    { width: 90vw; }
+}
+@media (max-width: 600px) {
+  .ss-bottle-img  { height: 230px; }
+  .ss-ring-1, .ss-ring-2 { display: none; }
+  .ss-cap-title   { font-size: 1.8rem; }
+}

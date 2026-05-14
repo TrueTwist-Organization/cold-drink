@@ -1,0 +1,198 @@
+/* ══════════════════════════════════════════════════════
+   FEATURED DRINKS  –  Premium glassmorphism cards
+   ══════════════════════════════════════════════════════ */
+
+.featured-drinks-section {
+  padding: 110px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient glow blobs */
+.featured-drinks-section::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(199,95,113, 0.22) 0%, rgba(162,174,157,0.12) 50%, transparent 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+  animation: fdBlob 14s ease-in-out infinite alternate;
+}
+
+@keyframes fdBlob { 0%{transform:translateX(-50%) scale(1)} 100%{transform:translateX(-40%) scale(1.2)} }
+
+/* ── Grid ────────────────────────────────────────────── */
+.drinks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Card ────────────────────────────────────────────── */
+.drink-card {
+  position: relative;
+  background: rgba(14, 11, 18, 0.80);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 28px;
+  padding: 2rem 1.6rem;
+  text-align: center;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.55);
+}
+
+/* Top accent stripe */
+.drink-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 15%; right: 15%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(var(--primary-rgb,0,198,255),0.9), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.drink-card:hover::before { opacity: 1; }
+
+.drink-card:hover {
+  border-color: rgba(199,95,113, 0.38);
+  box-shadow:
+    0 0 0 1px rgba(199,95,113,0.14),
+    0 22px 55px rgba(0,0,0,0.68),
+    0 0 55px rgba(199,95,113,0.18),
+    0 0 90px rgba(162,174,157,0.08);
+}
+
+/* ── Card top row ────────────────────────────────────── */
+.card-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.rating-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255,215,0, 0.08);
+  padding: 0.38rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #FFD700;
+  border: 1px solid rgba(255,215,0, 0.22);
+  box-shadow: 0 0 10px rgba(255,215,0, 0.12);
+}
+
+/* ── Image area ──────────────────────────────────────── */
+.drink-image-wrapper {
+  position: relative;
+  height: 215px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.8rem;
+  transform: translateZ(40px);
+}
+
+.blob-bg {
+  position: absolute;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(var(--primary-rgb,0,198,255),1) 0%, transparent 70%);
+  opacity: 0.18;
+  filter: blur(22px);
+  border-radius: 50%;
+  z-index: 0;
+  animation: blobBreath 4s ease-in-out infinite alternate;
+}
+@keyframes blobBreath { 0%{transform:scale(1)} 100%{transform:scale(1.22)} }
+
+.drink-card-img {
+  max-width: 100%; max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.55)) drop-shadow(0 0 18px rgba(var(--primary-rgb,0,198,255),0.22));
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), filter 0.5s ease;
+  z-index: 1;
+  position: relative;
+}
+
+.drink-card:hover .drink-card-img {
+  transform: scale(1.12) translateY(-10px) rotate(4deg);
+  filter: drop-shadow(0 28px 40px rgba(0,0,0,0.6)) drop-shadow(0 0 32px rgba(var(--primary-rgb,0,198,255),0.5));
+}
+
+/* ── Info ────────────────────────────────────────────── */
+.drink-info h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+  color: #fff;
+  transform: translateZ(20px);
+}
+
+.price-tag {
+  font-size: 1.75rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #F0B8B8, #C75F71);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.4rem;
+  transform: translateZ(30px);
+  filter: drop-shadow(0 0 10px rgba(199,95,113,0.40));
+}
+
+.neon-cart-btn {
+  width: 100%;
+  gap: 0.75rem;
+  background: linear-gradient(90deg, #C75F71, #A0435C, #C75F71);
+  background-size: 200% auto;
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 0 20px rgba(199,95,113,0.45);
+  transform: translateZ(40px);
+  animation: cartBtnGlow 4s linear infinite;
+}
+
+@keyframes cartBtnGlow {
+  0%,100%{ background-position: 0% center; box-shadow: 0 0 20px rgba(199,95,113,0.45); }
+  50%    { background-position: 100% center; box-shadow: 0 0 40px rgba(199,95,113,0.70); }
+}
+
+.neon-cart-btn:hover {
+  transform: translateZ(40px) translateY(-3px) scale(1.03);
+  box-shadow: 0 0 50px rgba(199,95,113,0.85);
+}
+
+/* ── Bottom glow ─────────────────────────────────────── */
+.card-glow-effect {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 115%, rgba(var(--primary-rgb,0,198,255),0.15), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+.drink-card:hover .card-glow-effect { opacity: 1; }
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .drinks-grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.5rem; }
+}
+@media (max-width: 480px) {
+  .featured-drinks-section { padding: 60px 0; }
+  .drinks-grid { grid-template-columns: 1fr; }
+  .drink-card { padding: 1.5rem; }
+  .drink-image-wrapper { height: 175px; }
+  .drink-info h3 { font-size: 1.2rem; }
+  .price-tag { font-size: 1.5rem; }
+}

@@ -1,0 +1,42 @@
+/* ══════════════════════════════════════════════════════
+   LIQUID CANVAS  –  Fills the hero section
+   ══════════════════════════════════════════════════════ */
+
+.liquid-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Sit above the dim background video but below UI content */
+  z-index: 3;
+
+  pointer-events: none;
+
+  /* Blend the canvas into the dark background using screen mode:
+     dark areas (near black) stay dark; the coloured liquid
+     brightens the zone it occupies — cinematic glow effect.    */
+  mix-blend-mode: screen;
+
+  /* Let the canvas edges softly feather into the hero edges */
+  -webkit-mask-image:
+    linear-gradient(to left,  black 50%, transparent 100%),
+    linear-gradient(to bottom, black 60%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to left,  black 50%, transparent 100%),
+    linear-gradient(to bottom, black 60%, transparent 100%);
+  mask-composite: intersect;
+}
+
+@media (max-width: 768px) {
+  .liquid-canvas {
+    /* On mobile the effect is visible but lighter */
+    opacity: 0.75;
+  }
+}
+@media (max-width: 480px) {
+  .liquid-canvas {
+    opacity: 0.55;
+  }
+}

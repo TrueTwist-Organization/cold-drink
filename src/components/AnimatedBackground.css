@@ -1,0 +1,177 @@
+/* ══════════════════════════════════════════════════════
+   ANIMATED BACKGROUND  –  Dark Premium Luxury Theme
+   Rose #C75F71 · Blush #F0B8B8 · Sage #A2AE9D · Brown #54463A
+   ══════════════════════════════════════════════════════ */
+
+.animated-bg-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ══ SCROLL-DRIVEN BACKGROUND IMAGES ═══════════════════
+   Three images that crossfade as the user scrolls the
+   whole page. They live inside the fixed container so
+   they stay in the viewport and cover all sections.      */
+.bg-scroll-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  /* Dark + desaturated so they don't overpower content  */
+  filter: brightness(0.22) saturate(0.65) contrast(1.05);
+  will-change: opacity;
+}
+.bg-scroll-img-1 { background-image: url('/img1.jpeg'); z-index: 0; }
+.bg-scroll-img-2 { background-image: url('/img2.jpeg'); z-index: 0; }
+.bg-scroll-img-3 { background-image: url('/img3.jpeg'); z-index: 0; }
+
+/* Removed heavy full-screen filter animation for performance */
+.bg-gradient-base {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 20%, rgba(199,95,113,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 55% at 85% 80%, rgba(162,174,157,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 60% at 50% 50%, rgba(84,70,58,0.08) 0%, transparent 65%),
+    linear-gradient(160deg, #0D0D0D 0%, #0F0F0F 40%, #111010 70%, #0F0D0F 100%);
+}
+
+/* ── Full-page color wash (animated per bottle) ──────── */
+.bg-page-wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Dynamic animated blobs (color driven by context) ─── */
+.bg-blob-dyn {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  animation: blobFloat ease-in-out infinite alternate;
+  animation-duration: 20s;
+  /* Blur removed for performance: radial-gradients natively have soft edges */
+}
+/* Stagger each blob's float */
+.bg-blob-dyn:nth-child(3) { animation-duration:18s; }
+.bg-blob-dyn:nth-child(4) { animation-duration:22s; animation-delay:-7s; }
+.bg-blob-dyn:nth-child(5) { animation-duration:20s; animation-delay:-4s; }
+.bg-blob-dyn:nth-child(6) { animation-duration:26s; animation-delay:-12s; }
+
+@keyframes blobFloat {
+  0%  { transform: translate(0,0)       scale(1); }
+  50% { transform: translate(28px,-30px) scale(1.08); }
+  100%{ transform: translate(-18px,22px) scale(0.94); }
+}
+
+/* Legacy blob classes (fallback) */
+.bg-blob { display: none; }
+
+/* ══ FRUIT SHAPES (dark glowing versions) ═════════════ */
+.bg-fruit {
+  position: absolute;
+  animation: fruitDrift ease-in-out infinite alternate;
+}
+@keyframes fruitDrift {
+  0%   { transform: rotate(var(--rot,0deg)) translateY(0); }
+  100% { transform: rotate(calc(var(--rot,0deg) + 18deg)) translateY(-22px); }
+}
+
+/* Type 0 — Orange slice — glowing warm */
+.fruit-t0 {
+  border-radius: 50%;
+  background:
+    repeating-conic-gradient(
+      rgba(80,30,0,0.55) 0deg 30deg,
+      transparent 30deg 60deg
+    ),
+    radial-gradient(circle, rgba(255,180,60,0.9) 20%, rgba(180,90,10,0.7) 55%, rgba(60,20,0,0.5) 90%);
+  box-shadow:
+    0 0 22px rgba(199,95,113,0.55),
+    0 0 55px rgba(199,95,113,0.2),
+    inset 0 0 12px rgba(255,160,60,0.3);
+}
+
+/* Type 1 — Lemon — glowing gold */
+.fruit-t1 {
+  border-radius: 50% 50% 50% 10%;
+  background: radial-gradient(circle at 35% 35%, rgba(255,255,160,0.9), rgba(200,160,20,0.7) 55%, rgba(80,55,0,0.5) 90%);
+  box-shadow:
+    0 0 20px rgba(240,184,184,0.45),
+    0 0 50px rgba(240,184,184,0.15),
+    inset 0 0 10px rgba(255,240,100,0.25);
+  transform-origin: center center;
+}
+
+/* Type 2 — Leaf — glowing sage */
+.fruit-t2 {
+  border-radius: 0% 100% 0% 100% / 50% 50% 50% 50%;
+  background: linear-gradient(135deg, rgba(180,220,120,0.85), rgba(120,160,110,0.7) 50%, rgba(50,80,45,0.5) 100%);
+  box-shadow:
+    0 0 18px rgba(162,174,157,0.50),
+    0 0 45px rgba(162,174,157,0.18);
+}
+
+/* Type 3 — Berry — glowing rose */
+.fruit-t3 {
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255,180,190,0.9), rgba(199,95,113,0.75) 55%, rgba(80,10,30,0.5) 90%);
+  box-shadow:
+    0 0 22px rgba(199,95,113,0.60),
+    0 0 55px rgba(199,95,113,0.25),
+    inset 0 0 10px rgba(255,120,140,0.3);
+}
+
+/* Type 4 — Grape — glowing blush/purple */
+.fruit-t4 {
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(230,180,220,0.9), rgba(160,90,160,0.6) 55%, rgba(50,10,60,0.45) 90%);
+  box-shadow:
+    0 0 20px rgba(240,184,184,0.42),
+    0 0 48px rgba(240,184,184,0.16);
+}
+
+/* ══ GLOWING BUBBLES ══════════════════════════════════ */
+.bg-soft-bubble {
+  position: absolute;
+  bottom: -20px;
+  border-radius: 50%;
+  animation: softBubbleRise linear infinite;
+}
+/* Rose bubble */
+.bub-t0 {
+  background: radial-gradient(circle at 30% 28%,
+    rgba(255,255,255,0.55), rgba(199,95,113,0.35) 55%, transparent);
+  box-shadow: 0 0 8px rgba(199,95,113,0.45), inset 0 0 5px rgba(255,200,210,0.3);
+}
+/* Sage bubble */
+.bub-t1 {
+  background: radial-gradient(circle at 30% 28%,
+    rgba(255,255,255,0.45), rgba(162,174,157,0.35) 55%, transparent);
+  box-shadow: 0 0 8px rgba(162,174,157,0.40);
+}
+/* Blush bubble */
+.bub-t2 {
+  background: radial-gradient(circle at 30% 28%,
+    rgba(255,255,255,0.50), rgba(240,184,184,0.38) 55%, transparent);
+  box-shadow: 0 0 8px rgba(240,184,184,0.38);
+}
+/* White/neutral bubble */
+.bub-t3 {
+  background: radial-gradient(circle at 30% 28%,
+    rgba(255,255,255,0.60), rgba(180,150,170,0.25) 55%, transparent);
+  box-shadow: 0 0 7px rgba(255,255,255,0.18);
+}
+@keyframes softBubbleRise {
+  0%   { transform: translateY(0)    scale(0.65) translateX(0);   opacity: 0; }
+  8%   { opacity: 0.75; }
+  50%  { transform: translateY(-50vh) scale(1.02) translateX(12px); }
+  80%  { opacity: 0.35; }
+  100% { transform: translateY(-108vh) scale(1.12) translateX(-8px); opacity: 0; }
+}

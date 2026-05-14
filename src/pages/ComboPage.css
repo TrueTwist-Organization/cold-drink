@@ -1,0 +1,150 @@
+.combo-page {
+  background: #000;
+  min-height: 100vh;
+}
+
+.combo-hero-scroll-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.combo-hero-pinned {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.combo-media-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.combo-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(0,0,0,0.5) 100%),
+              linear-gradient(to right, rgba(0,0,0,0.7) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.7) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+
+.combo-details-section {
+  padding: 100px 0 120px;
+  background: #000;
+  position: relative;
+  z-index: 10;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.combo-details-animated {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.combo-main-title {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 900;
+  margin: 1.5rem 0;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.combo-summary {
+  font-size: 1.35rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 600px;
+}
+
+.combo-includes-animated {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.combo-item-chip {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.combo-item-chip:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.1);
+}
+
+.combo-cta-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.price-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.6;
+  margin-bottom: 0.25rem;
+}
+
+.price-amount {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.combo-btns {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.combo-btns .btn {
+  flex: 1;
+  padding: 1.25rem;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .combo-hero-pinned {
+    height: 70vh;
+  }
+  .combo-details-section {
+    padding: 60px 0 80px;
+  }
+  .combo-cta-group {
+    padding-top: 2rem;
+    gap: 1.5rem;
+  }
+  .combo-btns {
+    flex-direction: column;
+  }
+}

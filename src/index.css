@@ -1,0 +1,320 @@
+/* ═══════════════════════════════════════════════════════════
+   CHILLSIP  —  Dark Premium Palette
+   #C75F71  ·  #F0B8B8  ·  #A2AE9D  ·  #54463A  ·  #0D0D0D
+   ═══════════════════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap');
+
+:root {
+  /* ── Brand palette ─────────────────────────────────────── */
+  --rose:          #C75F71;
+  --rose-rgb:      199, 95, 113;
+  --blush:         #F0B8B8;
+  --blush-rgb:     240, 184, 184;
+  --sage:          #A2AE9D;
+  --sage-rgb:      162, 174, 157;
+  --brown:         #54463A;
+  --brown-rgb:     84, 70, 58;
+
+  /* ── Semantic aliases ───────────────────────────────────── */
+  --primary:       #C75F71;
+  --primary-rgb:   199, 95, 113;
+  --secondary:     #F0B8B8;
+  --secondary-rgb: 240, 184, 184;
+  --accent:        #A2AE9D;
+  --accent-rgb:    162, 174, 157;
+  --gold:          #E8C87A;
+  --gold-rgb:      232, 200, 122;
+  --gold-light:    #F5E0A0;
+  --bronze:        #C75F71;
+  --bronze-rgb:    199, 95, 113;
+  --olive:         #A2AE9D;
+  --olive-rgb:     162, 174, 157;
+  --cream:         #F0B8B8;
+
+  /* ── Dark backgrounds ───────────────────────────────────── */
+  --bg-main:       #0D0D0D;
+  --bg-mid:        #131313;
+  --bg-light:      #1A1A1A;
+  --bg-dark:       #0D0D0D;
+  --bg-dark-rgb:   13, 13, 13;
+  --bg-cream:      #1A1A1A;
+  --bg-peach:      #161616;
+  --bg-soft:       #1E1E1E;
+  --bg-card:       rgba(255, 255, 255, 0.04);
+
+  /* ── Text ──────────────────────────────────────────────── */
+  --text-main:    #F0E8E0;
+  --text-muted:   rgba(240, 232, 224, 0.52);
+  --text-dark:    #F0E8E0;
+
+  /* ── Glass ──────────────────────────────────────────────── */
+  --glass-bg:       rgba(255, 255, 255, 0.055);
+  --glass-border:   rgba(255, 255, 255, 0.11);
+  --glass-shadow:   0 8px 40px rgba(0,0,0,0.55);
+
+  font-family: 'Poppins', 'Montserrat', sans-serif;
+
+  /* ── Page-wide dynamic theme (updated by Hero bottle cycler) ── */
+  --page-acc:     #C75F71;
+  --page-acc-rgb: 199,95,113;
+  --page-glow-a:  rgba(199,95,113,0.55);
+  --page-tag:     #F0B8B8;
+}
+
+/* ── Reset & base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0D0D0D;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(var(--page-acc-rgb),0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 55% at 80% 90%, rgba(var(--page-acc-rgb),0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(var(--page-acc-rgb),0.05) 0%, transparent 60%);
+  background-attachment: fixed;
+  color: var(--text-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typography ───────────────────────────────────────────── */
+h1, h2, h3, h4, h5 { font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--text-main); }
+
+/* Global gradient heading util */
+.gradient-text {
+  background: linear-gradient(90deg, var(--rose) 0%, var(--blush) 50%, var(--sage) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ── Container ────────────────────────────────────────────── */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+
+/* ── Glassmorphism card ───────────────────────────────────── */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* ── Badge ────────────────────────────────────────────────── */
+.glass-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  background: rgba(199,95,113,0.12);
+  border: 1px solid rgba(199,95,113,0.35);
+  backdrop-filter: blur(12px);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blush);
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+  padding: 0.95rem 2.2rem;
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content:'';
+  position:absolute;inset:0;border-radius:inherit;
+  background:rgba(255,255,255,0);
+  transition:background 0.25s;
+}
+.btn:hover::after { background:rgba(255,255,255,0.08); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--rose) 0%, #A8485A 100%);
+  color: #fff;
+  box-shadow: 0 8px 30px rgba(199,95,113,0.4);
+}
+.btn-primary:hover {
+  box-shadow: 0 12px 40px rgba(199,95,113,0.55);
+  transform: translateY(-3px) scale(1.03);
+}
+
+.btn-outline {
+  background: rgba(255,255,255,0.06);
+  color: var(--text-main);
+  border: 1.5px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(8px);
+}
+.btn-outline:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-3px);
+}
+
+/* ── Section headers ──────────────────────────────────────── */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+}
+.section-header h2 {
+  font-size: clamp(2rem,5vw,3.6rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #F0E8E0 0%, var(--blush) 55%, var(--sage) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.section-header p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 520px;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0D0D0D; }
+::-webkit-scrollbar-thumb { background: rgba(199,95,113,0.4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(199,95,113,0.7); }
+
+/* ── Animations ────────────────────────────────────────────── */
+@keyframes float-up-down {
+  0%,100%{ transform:translateY(0) rotate(0deg); }
+  50%    { transform:translateY(-18px) rotate(4deg); }
+}
+@keyframes pulse-glow {
+  0%,100%{ opacity:0.5; transform:scale(1); }
+  50%    { opacity:1;   transform:scale(1.08); }
+}
+@keyframes spin-slow { to { transform:rotate(360deg); } }
+@keyframes spin-rev  { to { transform:rotate(-360deg); } }
+@keyframes fadeUp    { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+/* Slide-up utility */
+.animate-slide-up {
+  animation: fadeUp 0.75s cubic-bezier(0.22,1,0.36,1) both;
+}
+.delay-200 { animation-delay:0.2s !important; }
+.delay-300 { animation-delay:0.3s !important; }
+.delay-400 { animation-delay:0.4s !important; }
+.delay-500 { animation-delay:0.5s !important; }
+
+@media (max-width: 900px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.3rem;
+  }
+
+  .section-header p {
+    max-width: 34rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    padding: 0 0.95rem;
+  }
+
+  .glass-badge {
+    padding: 0.45rem 0.95rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  .btn {
+    padding: 0.9rem 1.35rem;
+    font-size: 0.86rem;
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.7rem, 8vw, 2.5rem);
+  }
+
+  .section-header p {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 900px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.3rem;
+  }
+
+  .section-header p {
+    max-width: 34rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    padding: 0 0.95rem;
+  }
+
+  .glass-badge {
+    padding: 0.45rem 0.95rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  .btn {
+    padding: 0.85rem 1.25rem;
+    font-size: 0.82rem;
+    width: 100%;
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.7rem, 8vw, 2.3rem);
+  }
+
+  .section-header p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --container-padding: 0.75rem;
+  }
+  .container { padding: 0 var(--container-padding); }
+  
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.78rem;
+  }
+}

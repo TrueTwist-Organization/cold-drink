@@ -1,0 +1,176 @@
+.cas-section {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background: #000;
+  overflow: hidden;
+  z-index: 9999; /* If it's a "modal-like" overlay that pins */
+}
+
+.cas-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* Let clicks pass to canvas if needed, though scroll is the main interaction */
+  z-index: 10;
+  color: #fff;
+  padding: 40px;
+}
+
+.cas-category-name {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  line-height: 1;
+  text-align: center;
+  background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.3) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+}
+
+.cas-category-desc {
+  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+  max-width: 600px;
+  text-align: center;
+  opacity: 0.8;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.cas-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: var(--acc, #FF8500);
+  width: 0%;
+  z-index: 20;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 15px var(--acc, #FF8500);
+}
+
+.cas-close-btn {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  color: #fff;
+  pointer-events: all;
+}
+
+.cas-close-btn:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.1) rotate(90deg);
+}
+
+.cas-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.8s ease;
+}
+
+.cas-loading-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #fff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.cas-loading-line {
+  width: 200px;
+  height: 2px;
+  background: rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cas-loading-line-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--acc, #fff);
+  width: 0;
+  transition: width 0.2s ease;
+}
+
+/* Scroll Hint Indicator */
+.cas-scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: fadeIn 1s ease 1s forwards;
+  z-index: 15;
+}
+
+.cas-scroll-line {
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--acc, #fff), transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.cas-scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background: #fff;
+  animation: scrollAnim 2s infinite ease-in-out;
+}
+
+@keyframes scrollAnim {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(500%); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, 20px); }
+  to { opacity: 0.6; transform: translate(-50%, 0); }
+}
+
+@media (max-width: 768px) {
+  .cas-category-name { font-size: 3.5rem; }
+  .cas-category-desc { font-size: 1rem; padding: 0 20px; }
+  .cas-close-btn { top: 20px; right: 20px; width: 40px; height: 40px; }
+}
